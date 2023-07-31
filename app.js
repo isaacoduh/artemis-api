@@ -1,24 +1,33 @@
-const express = require('express');
-const {Task} = require('./models');
-
+require("dotenv").config();
+const express = require("express");
+const authRoutes = require("./routes/auth.routes");
 const app = express();
-app.use(express.json({limit: '5mb'}));
-const PORT = 5100;
+app.use(express.json({ limit: "5mb" }));
+app.use("/api/v1/auth", authRoutes); // authentication routes;
 
-app.get('/roost', async (req, res) => {
-    res.status(200).json({
-        message: 'Welcome to Mobfi'
-    });
-});
+module.exports = app;
 
-app.post('/create-record', async (req, res) => {
-    const {name, description} = req.body;
-    const t = await Task.create({name, description, done: false});
-    await t.save();
+// const express = require('express');
+// const {Task} = require('./models');
 
-    return res.json({data: t});
-})
+// const app = express();
+// app.use(express.json({limit: '5mb'}));
+// const PORT = 5100;
 
-app.listen(PORT, () => {
-    console.log(`App started on PORT ${PORT}`);
-})
+// app.get('/roost', async (req, res) => {
+//     res.status(200).json({
+//         message: 'Welcome to Mobfi'
+//     });
+// });
+
+// app.post('/create-record', async (req, res) => {
+//     const {name, description} = req.body;
+//     const t = await Task.create({name, description, done: false});
+//     await t.save();
+
+//     return res.json({data: t});
+// })
+
+// app.listen(PORT, () => {
+//     console.log(`App started on PORT ${PORT}`);
+// })
