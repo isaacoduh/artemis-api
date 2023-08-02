@@ -1,5 +1,33 @@
 {
     "tables": {
+        "SecurityQuestions": {
+            "tableName": "SecurityQuestions",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.BIGINT"
+                },
+                "question": {
+                    "allowNull": false,
+                    "unqiue": true,
+                    "field": "question",
+                    "seqType": "Sequelize.STRING"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "Tasks": {
             "tableName": "Tasks",
             "schema": {
@@ -93,5 +121,5 @@
             "indexes": []
         }
     },
-    "revision": 2
+    "revision": 3
 }

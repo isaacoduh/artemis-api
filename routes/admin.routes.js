@@ -8,5 +8,9 @@ router.post(
   adminController.createSecurityQuestion
 );
 router.get("/security-questions", adminController.getAllSecurityQuestions);
+router.post(
+  "/security-questions/bulk-create",
+  adminController.bulkCreateSecurityQuestions
+);
 
 module.exports = router;

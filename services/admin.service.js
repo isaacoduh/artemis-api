@@ -10,4 +10,22 @@ const getAllSecurityQuestions = async () => {
   return questions;
 };
 
-module.exports = { createSecurityQuestion, getAllSecurityQuestions };
+const bulkCreateSecurityQuestions = async (questions) => {
+  try {
+    const promises = [];
+    for (let i = 0; i < questions.length; i++) {
+      const p = await SecurityQuestion.create(questions[i]);
+      promises.push(p);
+    }
+    await Promise.all(promises);
+    return;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  createSecurityQuestion,
+  getAllSecurityQuestions,
+  bulkCreateSecurityQuestions,
+};

@@ -8,9 +8,19 @@ const createSecurityQuestion = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.CREATED, "Success", { ...payload });
 });
 
+const bulkCreateSecurityQuestions = catchAsync(async (req, res) => {
+  const { questions } = req.body;
+  const r = await adminService.bulkCreateSecurityQuestions(questions);
+  return ApiResponder(res, httpStatus.CREATED, "Success");
+});
+
 const getAllSecurityQuestions = catchAsync(async (req, res) => {
   const payload = await adminService.getAllSecurityQuestions();
   return ApiResponder(res, httpStatus.OK, "Success", payload);
 });
 
-module.exports = { createSecurityQuestion, getAllSecurityQuestions };
+module.exports = {
+  createSecurityQuestion,
+  getAllSecurityQuestions,
+  bulkCreateSecurityQuestions,
+};
