@@ -1,5 +1,4 @@
-const { Sequelize, DataTypes } = require("sequelize");
-const bcrypt = require("bcryptjs");
+const { Sequelize } = require("sequelize");
 
 module.exports = (sequelize, DataTypes) => {
   const Account = sequelize.define(
@@ -19,12 +18,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
       },
       balance: {
-        type: DataTypes.DOUBLE,
+        type: DataTypes.FLOAT,
         default: 0,
       },
     },
-    { paranoid: true },
-    { indexes: [{ unique: true, fields: ["user_id", "currency"] }] }
+    { paranoid: true }
   );
 
   return Account;

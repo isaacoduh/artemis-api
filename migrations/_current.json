@@ -22,7 +22,7 @@
                 "balance": {
                     "default": 0,
                     "field": "balance",
-                    "seqType": "Sequelize.DOUBLE PRECISION"
+                    "seqType": "Sequelize.FLOAT"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -212,5 +212,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 2
 }
