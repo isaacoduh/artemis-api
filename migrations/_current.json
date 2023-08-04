@@ -1,5 +1,46 @@
 {
     "tables": {
+        "Accounts": {
+            "tableName": "Accounts",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.BIGINT"
+                },
+                "user_id": {
+                    "allowNull": false,
+                    "field": "user_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "currency": {
+                    "allowNull": false,
+                    "field": "currency",
+                    "seqType": "Sequelize.STRING"
+                },
+                "balance": {
+                    "default": 0,
+                    "field": "balance",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "field": "deletedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "SecurityQuestions": {
             "tableName": "SecurityQuestions",
             "schema": {
@@ -171,5 +212,5 @@
             "indexes": []
         }
     },
-    "revision": 4
+    "revision": 2
 }

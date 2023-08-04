@@ -5,77 +5,20 @@ var Sequelize = require('sequelize');
 /**
  * Actions summary:
  *
- * createTable "Users", deps: []
+ * removeColumn "active" from table "Accounts"
  *
  **/
 
 var info = {
     "revision": 2,
     "name": "noname",
-    "created": "2023-07-19T08:54:00.936Z",
+    "created": "2023-08-04T14:55:38.309Z",
     "comment": ""
 };
 
 var migrationCommands = [{
-    fn: "createTable",
-    params: [
-        "Users",
-        {
-            "id": {
-                "type": Sequelize.BIGINT,
-                "field": "id",
-                "primaryKey": true,
-                "autoIncrement": true
-            },
-            "name": {
-                "type": Sequelize.STRING,
-                "field": "name"
-            },
-            "username": {
-                "type": Sequelize.STRING,
-                "field": "username",
-                "unique": true,
-                "allowNull": false
-            },
-            "email": {
-                "type": Sequelize.STRING,
-                "field": "email",
-                "unique": true,
-                "allowNull": false
-            },
-            "password": {
-                "type": Sequelize.STRING,
-                "field": "password",
-                "allowNull": false
-            },
-            "email_verified": {
-                "type": Sequelize.BOOLEAN,
-                "field": "email_verified",
-                "defaultValue": false,
-                "allowNull": false
-            },
-            "email_verified_at": {
-                "type": Sequelize.DATE,
-                "field": "email_verified_at",
-                "allowNull": true
-            },
-            "createdAt": {
-                "type": Sequelize.DATE,
-                "field": "createdAt",
-                "allowNull": false
-            },
-            "updatedAt": {
-                "type": Sequelize.DATE,
-                "field": "updatedAt",
-                "allowNull": false
-            },
-            "deletedAt": {
-                "type": Sequelize.DATE,
-                "field": "deletedAt"
-            }
-        },
-        {}
-    ]
+    fn: "removeColumn",
+    params: ["Accounts", "active"]
 }];
 
 module.exports = {
