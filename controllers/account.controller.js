@@ -12,4 +12,9 @@ const createAccount = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.CREATED, "Success", { ...payload });
 });
 
-module.exports = { createAccount };
+const getAllAccounts = catchAsync(async (req, res) => {
+  const accounts = await accountService.getAllAccounts(req.user.id);
+  return ApiResponder(res, httpStatus.OK, "Success", { ...accounts });
+});
+
+module.exports = { createAccount, getAllAccounts };

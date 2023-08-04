@@ -25,4 +25,11 @@ const createAccount = async (payload) => {
   }
 };
 
-module.exports = { createAccount };
+const getAllAccounts = async (id) => {
+  try {
+    const accounts = await Account.findAll({ where: { id: id } });
+    return { accounts };
+  } catch (error) {}
+};
+
+module.exports = { createAccount, getAllAccounts };
