@@ -6,6 +6,8 @@
   - Register
   - Login
   - Get Authenticated User
+  - Profile
+    - Create and Update Profile
 
 TBD
 
