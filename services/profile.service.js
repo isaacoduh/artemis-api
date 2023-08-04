@@ -1,5 +1,7 @@
+const { BAD_REQUEST } = require("http-status");
 const {
   User,
+  Profile,
   SecurityQuestion,
   UserSecurityQuestion,
   sequelize,
@@ -45,4 +47,20 @@ const bulkSaveSecurityQuestions = async (payload, userId) => {
   }
 };
 
-module.exports = { createSecurityQuestion, bulkSaveSecurityQuestions };
+const updateProfile = async (payload, userId) => {
+  try {
+    const { gender } = payload;
+    const profile = await Profile.findOne({ where: { user_id: userId } });
+    abortIf(!profile, BAD_REQUEST, "Profile does not exist!");
+    await profile.update({ gender: gender });
+    return profile.get();
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  createSecurityQuestion,
+  bulkSaveSecurityQuestions,
+  updateProfile,
+};

@@ -24,10 +24,40 @@
                     "field": "balance",
                     "seqType": "Sequelize.FLOAT"
                 },
-                "active": {
-                    "default": true,
-                    "field": "active",
-                    "seqType": "Sequelize.BOOLEAN"
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "deletedAt": {
+                    "field": "deletedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
+        "Profiles": {
+            "tableName": "Profiles",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.BIGINT"
+                },
+                "gender": {
+                    "field": "gender",
+                    "seqType": "Sequelize.STRING"
+                },
+                "user_id": {
+                    "allowNull": false,
+                    "field": "user_id",
+                    "seqType": "Sequelize.INTEGER"
                 },
                 "createdAt": {
                     "allowNull": false,
@@ -42,6 +72,17 @@
                 "deletedAt": {
                     "field": "deletedAt",
                     "seqType": "Sequelize.DATE"
+                },
+                "UserId": {
+                    "allowNull": true,
+                    "references": {
+                        "model": "Users",
+                        "key": "id"
+                    },
+                    "onDelete": "SET NULL",
+                    "onUpdate": "CASCADE",
+                    "field": "UserId",
+                    "seqType": "Sequelize.BIGINT"
                 }
             },
             "indexes": []
@@ -217,5 +258,5 @@
             "indexes": []
         }
     },
-    "revision": 1
+    "revision": 3
 }
