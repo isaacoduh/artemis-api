@@ -1,5 +1,5 @@
 const { BAD_REQUEST } = require("http-status");
-const { User, sequelize } = require("../models");
+const { User, Profile, sequelize } = require("../models");
 const bcrypt = require("bcryptjs");
 const {
   abortIf,
@@ -18,7 +18,8 @@ const createUser = async (userPayload) => {
     payload.email = userPayload.email.toString().toLowerCase();
 
     const user = await User.create(payload, { transaction });
-    return { user };
+    const profile = await Profile.create({ user_id: user.id }, { transaction });
+    return { user, profile };
   });
 };
 

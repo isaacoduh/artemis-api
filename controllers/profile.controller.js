@@ -21,4 +21,13 @@ const bulkSaveSecurityQuestions = catchAsync(async (req, res) => {
   return successResponse(res, { result });
 });
 
-module.exports = { createSecurityQuestion, bulkSaveSecurityQuestions };
+const updateProfile = catchAsync(async (req, res) => {
+  const result = await profileService.updateProfile(req.body, req.user.id);
+  return successResponse(res, { ...result }, "Success");
+});
+
+module.exports = {
+  createSecurityQuestion,
+  bulkSaveSecurityQuestions,
+  updateProfile,
+};

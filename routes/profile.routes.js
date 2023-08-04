@@ -14,4 +14,6 @@ router.post(
   authenticateJWT,
   profileController.bulkSaveSecurityQuestions
 );
+
+router.put("/update-profile", authenticateJWT, profileController.updateProfile);
 module.exports = router;
