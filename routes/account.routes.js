@@ -7,6 +7,6 @@ router.post("/create", authenticateJWT, accountController.createAccount);
 router.get("/my-accounts", authenticateJWT, accountController.getAllAccounts);
 // ======= Payment Tests
 
-router.post("/accept-pay", paymentController.acceptPayment);
+router.post("/accept-pay", authenticateJWT, paymentController.acceptPayment);
 router.get("/payment/callback", paymentController.verifyPayment);
 module.exports = router;
