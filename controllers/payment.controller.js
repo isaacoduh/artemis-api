@@ -4,7 +4,6 @@ const axios = require("axios");
 const request = require("request");
 const { ApiResponder } = require("../utils/request/ApiResponder");
 const httpStatus = require("http-status");
-const PAYSTACK_API_KEY = "sk_test_36f20209757f2c67c957f336c9a2f31df37549da";
 const { User, Account, sequelize } = require("../models");
 require("dotenv").config();
 
@@ -24,7 +23,7 @@ const acceptPayment = catchAsync(async (req, res) => {
       paymentData,
       {
         headers: {
-          Authorization: `Bearer ${PAYSTACK_API_KEY}`,
+          Authorization: `Bearer ${process.env.PAYSTACK_API_SECRET}`,
         },
       }
     );
@@ -42,7 +41,7 @@ const verifyPayment = catchAsync(async (req, res) => {
       `https://api.paystack.co/transaction/verify/${reference}`,
       {
         headers: {
-          Authorization: `Bearer ${PAYSTACK_API_KEY}`,
+          Authorization: `Bearer ${process.env.PAYSTACK_API_SECRET}`,
         },
       }
     );
