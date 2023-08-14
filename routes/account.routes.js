@@ -5,6 +5,12 @@ const paymentController = require("../controllers/payment.controller");
 const router = express.Router();
 router.post("/create", authenticateJWT, accountController.createAccount);
 router.get("/my-accounts", authenticateJWT, accountController.getAllAccounts);
+router.get("/my-accounts/:id", authenticateJWT, accountController.getAccount);
+router.get(
+  "/my-accounts/:id/account-history",
+  authenticateJWT,
+  accountController.getAccountHistory
+);
 // ======= Payment Tests
 
 router.post("/accept-pay", authenticateJWT, paymentController.acceptPayment);

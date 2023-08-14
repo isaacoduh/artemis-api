@@ -12,9 +12,27 @@ const createAccount = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.CREATED, "Success", { ...payload });
 });
 
+const getAccount = catchAsync(async (req, res) => {
+  const account = await accountService.getAccount({
+    id: req.params.id,
+    user_id: req.user.id,
+  });
+  return ApiResponder(res, httpStatus.OK, "Success", account);
+});
+
 const getAllAccounts = catchAsync(async (req, res) => {
   const accounts = await accountService.getAllAccounts(req.user.id);
   return ApiResponder(res, httpStatus.OK, "Success", { ...accounts });
 });
 
-module.exports = { createAccount, getAllAccounts };
+const getAccountHistory = catchAsync(async (req, res) => {
+  const accountHistory = await accountService.getAccountHistory(req.params.id);
+  return ApiResponder(res, httpStatus.OK, "Success", { ...accountHistory });
+});
+
+module.exports = {
+  createAccount,
+  getAllAccounts,
+  getAccountHistory,
+  getAccount,
+};
