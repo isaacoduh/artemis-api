@@ -1,5 +1,5 @@
 const { BAD_REQUEST } = require("http-status");
-const { Account, sequelize } = require("../models");
+const { Account, AccountHistory, sequelize } = require("../models");
 const ApiError = require("../utils/request/ApiError");
 const { abortIf } = require("../utils/request/ApiResponder");
 const createAccount = async (payload) => {
@@ -32,4 +32,45 @@ const getAllAccounts = async (id) => {
   } catch (error) {}
 };
 
-module.exports = { createAccount, getAllAccounts };
+const getAccount = async (payload) => {
+  try {
+    const account = await Account.findOne({
+      where: { id: payload.id, user_id: payload.user_id },
+    });
+    return account;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const updateAccountHistory = async (payload) => {
+  try {
+    const { account_id, amount, type, user_id } = payload;
+    const updateAccount = await AccountHistory.create({
+      account_id: account_id,
+      user_id: user_id,
+      amount: parseFloat(amount),
+      type: type,
+    });
+    return updateAccount;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getAccountHistory = async (id) => {
+  try {
+    const accountHistory = await AccountHistory.findAll({ where: { id: id } });
+    return { accountHistory };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = {
+  createAccount,
+  getAllAccounts,
+  getAccount,
+  updateAccountHistory,
+  getAccountHistory,
+};

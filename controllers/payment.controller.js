@@ -4,7 +4,7 @@ const axios = require("axios");
 const request = require("request");
 const { ApiResponder } = require("../utils/request/ApiResponder");
 const httpStatus = require("http-status");
-const { User, Account, sequelize } = require("../models");
+const { User, Account, AccountHistory, sequelize } = require("../models");
 require("dotenv").config();
 
 const acceptPayment = catchAsync(async (req, res) => {
@@ -54,6 +54,12 @@ const verifyPayment = catchAsync(async (req, res) => {
         const account = await Account.findOne({ where: { user_id: user.id } });
         await account.update({
           balance: account.balance + transaction.amount / 100,
+        });
+        await AccountHistory.create({
+          account_id: account.id,
+          user_id: user.id,
+          amount: transaction.amount / 100,
+          type: "CREDIT",
         });
       }
       return res.status(200).send("Payment Callback Recieved: Account Funded!");
