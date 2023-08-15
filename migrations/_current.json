@@ -126,6 +126,67 @@
             },
             "indexes": []
         },
+        "SavingsPlans": {
+            "tableName": "SavingsPlans",
+            "schema": {
+                "id": {
+                    "autoIncrement": true,
+                    "primaryKey": true,
+                    "field": "id",
+                    "seqType": "Sequelize.BIGINT"
+                },
+                "name": {
+                    "allowNull": false,
+                    "field": "name",
+                    "seqType": "Sequelize.STRING"
+                },
+                "currency": {
+                    "defaultValue": {
+                        "value": "NGN"
+                    },
+                    "field": "currency",
+                    "seqType": "Sequelize.ENUM('NGN', 'USD')"
+                },
+                "startingAmount": {
+                    "field": "startingAmount",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "frequency": {
+                    "defaultValue": {
+                        "value": "monthly"
+                    },
+                    "field": "frequency",
+                    "seqType": "Sequelize.ENUM('daily', 'weekly', 'bi-weekly', 'monthly')"
+                },
+                "savingMethod": {
+                    "defaultValue": {
+                        "value": "manual"
+                    },
+                    "field": "savingMethod",
+                    "seqType": "Sequelize.ENUM('manual', 'automatic')"
+                },
+                "planLength": {
+                    "field": "planLength",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "user_id": {
+                    "allowNull": false,
+                    "field": "user_id",
+                    "seqType": "Sequelize.INTEGER"
+                },
+                "createdAt": {
+                    "allowNull": false,
+                    "field": "createdAt",
+                    "seqType": "Sequelize.DATE"
+                },
+                "updatedAt": {
+                    "allowNull": false,
+                    "field": "updatedAt",
+                    "seqType": "Sequelize.DATE"
+                }
+            },
+            "indexes": []
+        },
         "SecurityQuestions": {
             "tableName": "SecurityQuestions",
             "schema": {
@@ -297,5 +358,5 @@
             "indexes": []
         }
     },
-    "revision": 6
+    "revision": 8
 }
