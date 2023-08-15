@@ -60,6 +60,14 @@
                     "field": "user_id",
                     "seqType": "Sequelize.INTEGER"
                 },
+                "amount": {
+                    "field": "amount",
+                    "seqType": "Sequelize.FLOAT"
+                },
+                "type": {
+                    "field": "type",
+                    "seqType": "Sequelize.STRING"
+                },
                 "createdAt": {
                     "allowNull": false,
                     "field": "createdAt",
@@ -289,5 +297,5 @@
             "indexes": []
         }
     },
-    "revision": 5
+    "revision": 6
 }
