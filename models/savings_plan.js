@@ -11,6 +11,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false,
     },
+    currency: {
+      type: DataTypes.ENUM("NGN", "USD"),
+      defaultValue: "NGN",
+    },
     startingAmount: {
       type: DataTypes.FLOAT,
     },

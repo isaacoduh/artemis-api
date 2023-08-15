@@ -140,6 +140,13 @@
                     "field": "name",
                     "seqType": "Sequelize.STRING"
                 },
+                "currency": {
+                    "defaultValue": {
+                        "value": "NGN"
+                    },
+                    "field": "currency",
+                    "seqType": "Sequelize.ENUM('NGN', 'USD')"
+                },
                 "startingAmount": {
                     "field": "startingAmount",
                     "seqType": "Sequelize.FLOAT"
@@ -351,5 +358,5 @@
             "indexes": []
         }
     },
-    "revision": 7
+    "revision": 8
 }

@@ -4,11 +4,13 @@ const authRoutes = require("./routes/auth.routes");
 const adminRoutes = require("./routes/admin.routes");
 const profileRoutes = require("./routes/profile.routes");
 const accountRoutes = require("./routes/account.routes");
+const savingsRoutes = require("./routes/savings.routes");
 const app = express();
 app.use(express.json({ limit: "5mb" }));
 app.use("/api/v1/auth", authRoutes); // authentication routes;
 app.use("/api/v1/profile", profileRoutes);
 app.use("/api/v1/account", accountRoutes);
+app.use("/api/v1/savings", savingsRoutes);
 app.use("/api/v1/admin", adminRoutes);
 
 module.exports = app;
