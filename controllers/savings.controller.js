@@ -24,4 +24,18 @@ const createSavingsPlan = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.CREATED, "Success", { ...result });
 });
 
-module.exports = { createSavingsPlan };
+const getAllSavingsPlans = catchAsync(async (req, res) => {
+  const result = await savingsService.getAllSavingsPlans(req.user.id);
+  return ApiResponder(res, httpStatus.OK, "Success", result);
+});
+
+const getSavingsPlanById = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await savingsService.getSavingsPlanById({
+    id,
+    user_id: req.user.id,
+  });
+  return ApiResponder(res, httpStatus.OK, "Success", result);
+});
+
+module.exports = { createSavingsPlan, getAllSavingsPlans, getSavingsPlanById };

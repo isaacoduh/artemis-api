@@ -25,4 +25,26 @@ const createSavingsPlan = async (payload) => {
   }
 };
 
-module.exports = { createSavingsPlan };
+const getAllSavingsPlans = async (user_id) => {
+  try {
+    const plans = await SavingsPlan.findAll({ where: { user_id } });
+    return plans;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+const getSavingsPlanById = async (payload) => {
+  try {
+    const { id, user_id } = payload;
+    const plan = await SavingsPlan.findOne({
+      where: { id: id, user_id: user_id },
+    });
+
+    return plan;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+module.exports = { createSavingsPlan, getAllSavingsPlans, getSavingsPlanById };
