@@ -364,52 +364,7 @@
                 }
             },
             "indexes": []
-        },
-        "Wallets": {
-            "tableName": "Wallets",
-            "schema": {
-                "id": {
-                    "allowNull": false,
-                    "primaryKey": true,
-                    "autoIncrement": true,
-                    "field": "id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "tag": {
-                    "allowNull": false,
-                    "unique": true,
-                    "field": "tag",
-                    "seqType": "Sequelize.STRING"
-                },
-                "balance": {
-                    "defaultValue": {
-                        "value": 0
-                    },
-                    "field": "balance",
-                    "seqType": "Sequelize.FLOAT"
-                },
-                "currency": {
-                    "field": "currency",
-                    "seqType": "Sequelize.ENUM('NGN', 'GHS', 'USD', 'GBP')"
-                },
-                "user_id": {
-                    "allowNull": false,
-                    "field": "user_id",
-                    "seqType": "Sequelize.INTEGER"
-                },
-                "createdAt": {
-                    "allowNull": false,
-                    "field": "createdAt",
-                    "seqType": "Sequelize.DATE"
-                },
-                "updatedAt": {
-                    "allowNull": false,
-                    "field": "updatedAt",
-                    "seqType": "Sequelize.DATE"
-                }
-            },
-            "indexes": []
         }
     },
-    "revision": 2
+    "revision": 1
 }

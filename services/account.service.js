@@ -27,7 +27,7 @@ const createAccount = async (payload) => {
 
 const getAllAccounts = async (id) => {
   try {
-    const accounts = await Account.findAll({ where: { id: id } });
+    const accounts = await Account.findAll({ where: { user_id: id } });
     return { accounts };
   } catch (error) {}
 };
