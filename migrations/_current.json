@@ -147,6 +147,14 @@
                     "field": "currency",
                     "seqType": "Sequelize.ENUM('NGN', 'USD')"
                 },
+                "balance": {
+                    "allowNull": false,
+                    "defaultValue": {
+                        "value": 0
+                    },
+                    "field": "balance",
+                    "seqType": "Sequelize.FLOAT"
+                },
                 "startingAmount": {
                     "field": "startingAmount",
                     "seqType": "Sequelize.FLOAT"
@@ -358,5 +366,5 @@
             "indexes": []
         }
     },
-    "revision": 8
+    "revision": 1
 }

@@ -1,4 +1,5 @@
-const { SavingsPlan, sequelize } = require("../models");
+const { SavingsPlan, Account, sequelize } = require("../models");
+const { abortIf } = require("../utils/request/ApiResponder");
 const createSavingsPlan = async (payload) => {
   try {
     const {
@@ -47,4 +48,64 @@ const getSavingsPlanById = async (payload) => {
   }
 };
 
-module.exports = { createSavingsPlan, getAllSavingsPlans, getSavingsPlanById };
+const fundASavingsPlan = async (payload) => {
+  try {
+    const { id, user_id, amount } = payload;
+    const plan = await SavingsPlan.findOne({
+      where: { id: id, user_id: user_id },
+    });
+    plan.balance += amount;
+    await plan.save();
+    return plan;
+  } catch (error) {}
+};
+
+const withdrawFromSavings = async (payload) => {
+  const transaction = await sequelize.transaction();
+  try {
+    const { id, user_id, amount } = payload;
+
+    const plan = await SavingsPlan.findOne(
+      {
+        where: { id: id, user_id: user_id },
+      },
+      transaction
+    );
+    // check for the currency of the savings plan
+    const account = await Account.findOne(
+      {
+        where: { user_id: user_id, currency: plan.currency },
+      },
+      transaction
+    );
+
+    abortIf(
+      !account,
+      500,
+      "You need to create an account in the currency you want to withdraw to!"
+    );
+
+    // deduct from plan and credit to account
+    // const
+    plan.balance -= amount;
+    account.balance += amount;
+
+    await plan.save({ transaction });
+    await account.save({ transaction });
+
+    await transaction.commit();
+
+    return true;
+  } catch (error) {
+    await transaction.rollback();
+    console.log(error);
+  }
+};
+
+module.exports = {
+  createSavingsPlan,
+  getAllSavingsPlans,
+  getSavingsPlanById,
+  fundASavingsPlan,
+  withdrawFromSavings,
+};

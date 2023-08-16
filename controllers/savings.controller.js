@@ -38,4 +38,30 @@ const getSavingsPlanById = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.OK, "Success", result);
 });
 
-module.exports = { createSavingsPlan, getAllSavingsPlans, getSavingsPlanById };
+const fundASavingsPlan = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await savingsService.fundASavingsPlan({
+    id,
+    user_id: req.user.id,
+    amount: req.body.amount,
+  });
+  return ApiResponder(res, httpStatus.OK, "Success", result);
+});
+
+const withdrawFromSavings = catchAsync(async (req, res) => {
+  const id = req.params.id;
+  const result = await savingsService.withdrawFromSavings({
+    id,
+    user_id: req.user.id,
+    amount: req.body.amount,
+  });
+  return ApiResponder(res, httpStatus.OK, "Success", result);
+});
+
+module.exports = {
+  createSavingsPlan,
+  getAllSavingsPlans,
+  getSavingsPlanById,
+  fundASavingsPlan,
+  withdrawFromSavings,
+};

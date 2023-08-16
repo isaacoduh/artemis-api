@@ -14,4 +14,15 @@ router.get(
   authenticateJWT,
   savingsController.getSavingsPlanById
 );
+
+router.post(
+  "/my-savings/:id/fund",
+  authenticateJWT,
+  savingsController.fundASavingsPlan
+);
+router.post(
+  "/my-savings/:id/withdraw",
+  authenticateJWT,
+  savingsController.withdrawFromSavings
+);
 module.exports = router;
