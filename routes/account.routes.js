@@ -2,8 +2,15 @@ const express = require("express");
 const { authenticateJWT } = require("../middleware/auth");
 const accountController = require("../controllers/account.controller");
 const paymentController = require("../controllers/payment.controller");
+const { validateReq } = require("../middleware/validate");
+const { createAccount } = require("../utils/validations/account.validation");
 const router = express.Router();
-router.post("/create", authenticateJWT, accountController.createAccount);
+router.post(
+  "/create",
+  authenticateJWT,
+  validateReq(createAccount),
+  accountController.createAccount
+);
 router.get("/my-accounts", authenticateJWT, accountController.getAllAccounts);
 router.get("/my-accounts/:id", authenticateJWT, accountController.getAccount);
 router.get(
