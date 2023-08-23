@@ -1,7 +1,8 @@
+const httpStatus = require("http-status");
 const { BAD_REQUEST } = require("http-status");
 const { Account, AccountHistory, sequelize } = require("../models");
 const ApiError = require("../utils/request/ApiError");
-const { abortIf } = require("../utils/request/ApiResponder");
+const { abortIf, abort } = require("../utils/request/ApiResponder");
 const createAccount = async (payload) => {
   try {
     const { currency, user_id } = payload;
@@ -21,7 +22,8 @@ const createAccount = async (payload) => {
     const account = await Account.create({ user_id, currency, balance: 0.0 });
     return { account };
   } catch (error) {
-    console.log(error);
+    console.log(error.message);
+    abort(httpStatus.BAD_REQUEST, error.message);
   }
 };
 
@@ -29,7 +31,9 @@ const getAllAccounts = async (id) => {
   try {
     const accounts = await Account.findAll({ where: { user_id: id } });
     return { accounts };
-  } catch (error) {}
+  } catch (error) {
+    abort(httpStatus.BAD_REQUEST, error.message);
+  }
 };
 
 const getAccount = async (payload) => {
