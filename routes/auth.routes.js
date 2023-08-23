@@ -11,11 +11,10 @@ const router = express.Router();
 
 router.post(
   "/register",
-  //   validateReq(registerUser),
-  // registerUser,
+  validateReq(registerUser),
   authController.registerUser
 );
-router.post("/login", authController.login);
+router.post("/login", validateReq(loginUser), authController.login);
 router.get("/me", authenticateJWT, authController.getAuthUser);
 
 module.exports = router;
