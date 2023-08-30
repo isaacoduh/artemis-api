@@ -15,7 +15,7 @@ const acceptPayment = catchAsync(async (req, res) => {
       email: user.dataValues.email,
       amount: amount * 100,
       reference: `payment_${Date.now()}`,
-      callback_url: "http://localhost:5100/api/v1/account/payment/callback",
+      // callback_url: "http://localhost:5100/api/v1/account/payment/callback",
     };
 
     const response = await axios.post(
