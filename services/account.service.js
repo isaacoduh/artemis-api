@@ -71,10 +71,21 @@ const getAccountHistory = async (id) => {
   }
 };
 
+const getLatestAccountHistory = async (user_id) => {
+  try {
+    const latest = await AccountHistory.findAll({
+      where: { user_id: user_id },
+    });
+    return { latest };
+  } catch (error) {
+    console.log(error);
+  }
+};
 module.exports = {
   createAccount,
   getAllAccounts,
   getAccount,
   updateAccountHistory,
   getAccountHistory,
+  getLatestAccountHistory,
 };

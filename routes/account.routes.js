@@ -18,6 +18,11 @@ router.get(
   authenticateJWT,
   accountController.getAccountHistory
 );
+router.get(
+  "/my-accounts",
+  authenticateJWT,
+  accountController.getLatestAccountHistory
+);
 // ======= Payment Tests
 
 router.post("/accept-pay", authenticateJWT, paymentController.acceptPayment);
