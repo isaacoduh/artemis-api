@@ -7,13 +7,13 @@ const authenticateJWT = (req, res, next) => {
     const token = authHeader.split(" ")[1];
     jwt.verify(token, process.env.JWT_SECRET, (err, data) => {
       if (err) {
-        return ApiError(httpStatus.UNAUTHORIZED);
+        return new ApiError(httpStatus.UNAUTHORIZED);
       }
       req.user = data.sub;
       next();
     });
   } else {
-    return ApiError(httpStatus.UNAUTHORIZED);
+    return new ApiError(httpStatus.UNAUTHORIZED);
   }
 };
 
