@@ -1,4 +1,4 @@
-const { SecurityQuestion } = require("../models");
+const { SecurityQuestion, User } = require("../models");
 
 const createSecurityQuestion = async (payload) => {
   const question = await SecurityQuestion.create(payload);
@@ -24,8 +24,14 @@ const bulkCreateSecurityQuestions = async (questions) => {
   }
 };
 
+const getAllUsers = async () => {
+  const users = await User.findAll();
+  return users;
+};
+
 module.exports = {
   createSecurityQuestion,
   getAllSecurityQuestions,
   bulkCreateSecurityQuestions,
+  getAllUsers,
 };

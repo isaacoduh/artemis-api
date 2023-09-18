@@ -12,5 +12,6 @@ router.post(
   "/security-questions/bulk-create",
   adminController.bulkCreateSecurityQuestions
 );
+router.get("/users", adminController.getAllUsers);
 
 module.exports = router;

@@ -19,8 +19,14 @@ const getAllSecurityQuestions = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.OK, "Success", payload);
 });
 
+const getAllUsers = catchAsync(async (req, res) => {
+  const payload = await adminService.getAllUsers();
+  return ApiResponder(res, httpStatus.OK, "Success", payload);
+});
+
 module.exports = {
   createSecurityQuestion,
   getAllSecurityQuestions,
   bulkCreateSecurityQuestions,
+  getAllUsers,
 };
