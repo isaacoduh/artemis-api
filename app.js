@@ -9,6 +9,7 @@ const profileRoutes = require("./routes/profile.routes");
 const accountRoutes = require("./routes/account.routes");
 const savingsRoutes = require("./routes/savings.routes");
 const walletRoutes = require("./routes/wallet.routes");
+const transferRoutes = require("./routes/transfer.routes");
 const ApiError = require("./utils/request/ApiError");
 const httpStatus = require("http-status");
 const { errorConverter, errorHandler } = require("./middleware/error");
@@ -36,6 +37,7 @@ app.use("/api/v1/account", accountRoutes);
 app.use("/api/v1/wallet", walletRoutes);
 app.use("/api/v1/savings", savingsRoutes);
 app.use("/api/v1/admin", adminRoutes);
+app.use("/api/v1/transfers", transferRoutes);
 
 // catch 404
 app.use((req, res, next) => {

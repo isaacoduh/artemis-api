@@ -64,7 +64,9 @@ const updateAccountHistory = async (payload) => {
 
 const getAccountHistory = async (id) => {
   try {
-    const accountHistory = await AccountHistory.findAll({ where: { id: id } });
+    const accountHistory = await AccountHistory.findAll({
+      where: { account_id: id },
+    });
     return { accountHistory };
   } catch (error) {
     console.log(error);
