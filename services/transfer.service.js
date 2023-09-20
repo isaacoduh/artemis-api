@@ -22,7 +22,7 @@ const sendTo = async (payload) => {
 
     // start the process
     const sAccount = await Account.findOne({
-      where: { user_id: sender_id },
+      where: { user_id: sender_id, currency: currency },
       transaction,
     });
 
