@@ -16,5 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     },
     { paranoid: true }
   );
+
+  AccountHistory.associate = (models) => {
+    AccountHistory.belongsTo(models.Account, {
+      foreignKey: "account_id",
+    });
+  };
+
   return AccountHistory;
 };

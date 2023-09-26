@@ -29,6 +29,9 @@ module.exports = (sequelize, DataTypes) => {
     Account.belongsTo(models.User, {
       foreignKey: "user_id",
     });
+    Account.hasMany(models.AccountHistory, {
+      foreignKey: "account_id",
+    });
   };
 
   return Account;

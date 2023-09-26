@@ -19,9 +19,14 @@ router.get(
   accountController.getAccountHistory
 );
 router.get(
-  "/my-accounts",
+  "/latest-transactions",
   authenticateJWT,
   accountController.getLatestAccountHistory
+);
+router.get(
+  "/all-transactions",
+  authenticateJWT,
+  accountController.getAllAccountHistory
 );
 // ======= Payment Tests
 

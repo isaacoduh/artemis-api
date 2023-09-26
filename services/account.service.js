@@ -73,10 +73,36 @@ const getAccountHistory = async (id) => {
   }
 };
 
+const getAllAccountHistory = async (user_id) => {
+  try {
+    const latest = await AccountHistory.findAll({
+      where: { user_id: user_id },
+      order: [["createdAt", "DESC"]],
+      include: [
+        {
+          model: Account,
+          attributes: ["currency", "balance"],
+        },
+      ],
+    });
+    return { latest };
+  } catch (error) {
+    console.log(error);
+  }
+};
+
 const getLatestAccountHistory = async (user_id) => {
   try {
     const latest = await AccountHistory.findAll({
       where: { user_id: user_id },
+      order: [["createdAt", "DESC"]],
+      limit: 5,
+      include: [
+        {
+          model: Account,
+          attributes: ["currency", "balance"],
+        },
+      ],
     });
     return { latest };
   } catch (error) {
@@ -90,4 +116,5 @@ module.exports = {
   updateAccountHistory,
   getAccountHistory,
   getLatestAccountHistory,
+  getAllAccountHistory,
 };

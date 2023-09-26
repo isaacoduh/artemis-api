@@ -35,10 +35,16 @@ const getLatestAccountHistory = catchAsync(async (req, res) => {
   return ApiResponder(res, httpStatus.OK, "Success", { ...latest });
 });
 
+const getAllAccountHistory = catchAsync(async (req, res) => {
+  const latest = await accountService.getAllAccountHistory(req.user.id);
+  return ApiResponder(res, httpStatus.OK, "Success", { ...latest });
+});
+
 module.exports = {
   createAccount,
   getAllAccounts,
   getAccountHistory,
   getAccount,
   getLatestAccountHistory,
+  getAllAccountHistory,
 };
